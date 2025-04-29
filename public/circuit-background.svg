@@ -1,0 +1,39 @@
+<svg width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#00d4ff" stroke-width="2" fill="none">
+    <!-- Líneas horizontales -->
+    <line x1="50" y1="100" x2="750" y2="100" class="circuit-line"/>
+    <line x1="50" y1="300" x2="750" y2="300" class="circuit-line"/>
+    <line x1="50" y1="500" x2="750" y2="500" class="circuit-line"/>
+    <!-- Líneas verticales -->
+    <line x1="200" y1="50" x2="200" y2="550" class="circuit-line"/>
+    <line x1="400" y1="50" x2="400" y2="550" class="circuit-line"/>
+    <line x1="600" y1="50" x2="600" y2="550" class="circuit-line"/>
+    <!-- Nodos -->
+    <circle cx="200" cy="100" r="8" fill="#00d4ff" class="circuit-node"/>
+    <circle cx="400" cy="300" r="8" fill="#00d4ff" class="circuit-node"/>
+    <circle cx="600" cy="500" r="8" fill="#00d4ff" class="circuit-node"/>
+    <circle cx="600" cy="100" r="8" fill="#00d4ff" class="circuit-node"/>
+    <circle cx="200" cy="500" r="8" fill="#00d4ff" class="circuit-node"/>
+    <circle cx="400" cy="100" r="8" fill="#00d4ff" class="circuit-node"/>
+  </g>
+  <style>
+    .circuit-line {
+      stroke-dasharray: 20 10;
+      stroke-dashoffset: 0;
+      animation: dashmove 4s linear infinite;
+    }
+    .circuit-node {
+      opacity: 0.7;
+      animation: node-glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes dashmove {
+      to {
+        stroke-dashoffset: -60;
+      }
+    }
+    @keyframes node-glow {
+      0% { filter: drop-shadow(0 0 0 #00d4ff); opacity: 0.7;}
+      100% { filter: drop-shadow(0 0 12px #00d4ff); opacity: 1;}
+    }
+  </style>
+</svg>
