@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import WelcomeScreen from "./components/WelcomeScreen";
-import StepByStepLesson from "./components/StepByStepLesson";
+import React from "react";
 import VirtualCoach from "./components/VirtualCoach";
+import ChatWindow from "./components/ChatWindow";
 import "./styles/styles.css";
 
 function App() {
-  const [platform, setPlatform] = useState(null);
-
   return (
-    <div className="main-container">
-      <VirtualCoach />
-      {!platform ? (
-        <WelcomeScreen onSelectPlatform={setPlatform} />
-      ) : (
-        <StepByStepLesson platform={platform} />
-      )}
+    <div className="main-flex-container">
+      <div className="chat-section">
+        <ChatWindow />
+      </div>
+      <div className="avatar-section">
+        <VirtualCoach />
+      </div>
     </div>
   );
 }
+
 
 export default App;
