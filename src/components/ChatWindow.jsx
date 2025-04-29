@@ -120,7 +120,7 @@ const ChatWindow = () => {
         />
         <button type="submit">Enviar</button>
       </form>
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginBottom: 8 , marginTop: 20 }}>
+      <div style={{ display: "flex",  gap: 8, marginBottom: 8 , marginTop: 20 }}>
         <button
           type="button"
           onClick={handleMicClick}
