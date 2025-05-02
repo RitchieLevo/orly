@@ -4,7 +4,7 @@ import AvatarCircuit from "./AvatarCircuit";
 
 
 const VirtualCoach = () => {
-  const [message, setMessage] = useState("¡Hola! Soy tu guía para crear videojuegos.");
+  const [message, setMessage] = useState("¡Hola! Soy Orby tu maestro virtual.");
   const [userInput, setUserInput] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
@@ -51,7 +51,7 @@ const VirtualCoach = () => {
   const handleSend = (inputText) => {
     const text = typeof inputText === "string" ? inputText : userInput;
     if (text.trim() !== "") {
-      const respuesta = "¡Genial! Vamos a hacerlo paso a paso 🚀";
+      const respuesta = "¡Genial! Vamos a hacerlo";
       setMessage(respuesta);
       speakCoach(respuesta); // Solo habla y vibra tras interacción
       setUserInput("");
@@ -104,32 +104,116 @@ const VirtualCoach = () => {
       <div className="coach-bubble">
         {message}
       </div>
-      <div className="input-area">
+      <div className="input-area" style={{ position: "relative", display: "flex", alignItems: "center" }}>
         <input
           type="text"
           placeholder="Escribe tu pregunta..."
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        />
-        <button onClick={() => handleSend()}>Enviar</button>
-        <button
-          onClick={handleMicClick}
           style={{
-            background: isListening ? "#ffcccc" : "#f0f0f0",
-            marginLeft: "8px",
-            borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            border: "none",
-            cursor: "pointer"
+            width: "100%",
+            paddingRight: 90, // espacio para los íconos
+            borderRadius: 8,
+            border: "1px solid #e0e0e0",
+            fontSize: "1rem",
+            padding: "10px 16px",
+            boxSizing: "border-box",
           }}
-          title={isListening ? "Escuchando..." : "Hablar"}
+        />
+        <div
+          style={{
+            position: "absolute",
+            right: 8,
+            top: "50%",
+            transform: "translateY(-50%)",
+            display: "flex",
+            gap: 8,
+            alignItems: "center",
+            zIndex: 2,
+          }}
         >
-          <span role="img" aria-label="mic">
-            {isListening ? "🎤" : "🎙️"}
-          </span>
-        </button>
+          {/* Botón enviar (paper plane) */}
+          <button
+            type="button"
+            onClick={() => handleSend()}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              cursor: userInput.trim() ? "pointer" : "not-allowed",
+              outline: "none",
+              display: "flex",
+              alignItems: "center",
+              opacity: userInput.trim() ? 1 : 0.5,
+            }}
+            disabled={!userInput.trim()}
+            aria-label="Enviar mensaje"
+            title="Enviar mensaje"
+          >
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="#00d4ff"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            </svg>
+          </button>
+          {/* Botón micrófono */}
+          <button
+  type="button"
+  onClick={handleMicClick}
+  style={{
+    background: "none",
+    border: "none",
+    padding: 0,
+    cursor: "pointer",
+    outline: "none",
+    display: "flex",
+    alignItems: "center",
+    opacity: isListening ? 0.5 : 1,
+  }}
+  aria-label={isListening ? "Escuchando..." : "Hablar"}
+  title={isListening ? "Escuchando..." : "Hablar"}
+>
+  {/* SVG micrófono mejorado */}
+  <svg
+    width="26"
+    height="26"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="9" y="2" width="6" height="12" rx="3" fill={isListening ? "#00a6c9" : "#00d4ff"} />
+    <path
+      d="M5 10V12C5 15.3137 7.68629 18 11 18H13C16.3137 18 19 15.3137 19 12V10"
+      stroke={isListening ? "#00a6c9" : "#00d4ff"}
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <line
+      x1="12"
+      y1="18"
+      x2="12"
+      y2="22"
+      stroke={isListening ? "#00a6c9" : "#00d4ff"}
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <line
+      x1="8"
+      y1="22"
+      x2="16"
+      y2="22"
+      stroke={isListening ? "#00a6c9" : "#00d4ff"}
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+</button>
+        </div>
       </div>
     </div>
   );
